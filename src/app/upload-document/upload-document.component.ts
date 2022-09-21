@@ -10,15 +10,13 @@ import { MessageService } from 'primeng/api';
 })
 export class UploadDocumentComponent implements OnInit {
 
-  userTypes: string[] = ['BidderDocuments', 'DisputeDocuments'];
-  documentTypes: string[] = ['TenderDocuments', 'DisputeFiles'];
-
+  userTypes: string[] = ['Amendment', 'DisputeDocuments'];
 
   uploadForm: FormGroup;
 
   multipartFile!: File;
 
-  isBidder: boolean = false;
+  isAmendment: boolean = false;
   isDispute: boolean = false;
   selectedUserType!: string;
 
@@ -30,11 +28,11 @@ export class UploadDocumentComponent implements OnInit {
   onSelect(event: any) {
     console.log('event :' + event);
     console.log(event.value);
-    if (event.value === 'BidderDocuments') {
+    if (event.value === 'Amendment') {
       this.isDispute = false;
-      this.isBidder = true;
+      this.isAmendment = true;
     } else if (event.value === 'DisputeDocuments') {
-      this.isBidder = false;
+      this.isAmendment = false;
       this.isDispute = true;
     }
   }
@@ -42,10 +40,9 @@ export class UploadDocumentComponent implements OnInit {
   constructor(private fb: FormBuilder, private uploadApi: UploadApi, private messageService: MessageService) {
     this.uploadForm = this.fb.group({
       userId: '',
-      disputeId: '',
+      commonId: '',
       fileDescription: '',
-      userType: '',
-      documentType: ''
+      userType: ''
     });
   }
 
@@ -61,16 +58,15 @@ export class UploadDocumentComponent implements OnInit {
 
     const val = this.uploadForm.value;
     console.log(val)
-    if (val.userId && val.fileDescription && val.userType) {
+    if (val.userId && val.fileDescription && val.userType && val.commonId) {
 
 
       let dto: FileUploadDTO = {
         file: this.multipartFile,
         fileDescription: val.fileDescription,
         userId: val.userId,
-        disputeId: val.disputeId,
-        userType: val.userType,
-        documentType: val.documentType
+        commonId: val.commonId,
+        userType: val.userType
       };
 
       this.uploadApi.save(dto)
@@ -78,10 +74,9 @@ export class UploadDocumentComponent implements OnInit {
           console.log(res);
           this.uploadForm = this.fb.group({
             userId: '',
-            disputeId: '',
+            commonId: '',
             fileDescription: '',
-            userType: '',
-            documentType: ''
+            userType: ''
           });
 
           this.multipartFile;
@@ -93,7 +88,7 @@ export class UploadDocumentComponent implements OnInit {
         });
 
       this.displayModal = false;
-      this.isBidder = false;
+      this.isAmendment = false;
       this.isDispute = false;
 
     }
@@ -108,11 +103,10 @@ export interface FileUploadDTO {
 
   userId: number;
 
-  disputeId: number;
+  commonId: number;
 
   userType: string;
 
-  documentType: string;
 
 
 }

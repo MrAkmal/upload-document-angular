@@ -35,24 +35,14 @@
 
     <br />
     <br>
-    <div class="mb-3" *ngIf="isDispute">
+    <div class="mb-3">
       <div class="p-inputgroup">
         <span class="p-float-label">
-          <input id="float-input" formControlName="disputeId" type="text" pInputText />
-          <label for="float-input">DisputeId</label>
+          <input id="float-input" formControlName="commonId" type="text" pInputText />
+          <label for="float-input" *ngIf="isDispute">DisputeId</label>
+          <label for="float-input" *ngIf="isAmendment">AmendmentId</label>
         </span>
       </div>
-    </div>
-
-    <br>
-    <br />
-    <div class="mb-3" *ngIf="isBidder">
-      <span class="p-float-label">
-        <p-dropdown inputId="dropdown" formControlName="documentType" [autoDisplayFirst]="false"
-          [options]="documentTypes" [style]="{ width: '100%' }">
-        </p-dropdown>
-        <label for="dropdown">DocumentType</label>
-      </span>
     </div>
     <br>
     <br />
