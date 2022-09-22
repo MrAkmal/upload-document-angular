@@ -1,0 +1,87 @@
+<div class="container" style="padding-top: 2rem">
+  <p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+  ></p-confirmDialog>
+  <p-table [value]="disputeDocuments" sortMode="multiple">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="Id">#</th>
+        <th pSortableColumn="Name">Name</th>
+        <th pSortableColumn="Version">Size</th>
+        <th pSortableColumn="Version">Date</th>
+        <th pSortableColumn="Version">Version</th>
+        <th pSortableColumn="View">View</th>
+        <th pSortableColumn="Settings" colspan="2">Settings</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-document let-rowIndex="rowIndex">
+      <tr scope="row">
+        <td>{{ rowIndex + 1 }}</td>
+        <td>{{ document.documentName }}</td>
+        <td>{{ document.documentSize }}</td>
+        <td>{{ document.uploadedDate }}</td>
+        <td>
+          <app-amendment-version [document]="document" [folder]="'dispute'"> </app-amendment-version>
+        </td>
+        <td>
+          <app-view-document
+            [document]="document"
+            [common]="'DisputeId'"
+          ></app-view-document>
+        </td>
+        <td>
+          <button
+            pButton
+            pRipple
+            type="button"
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-danger"
+            (click)="showConfirm(document.id)"
+          ></button>
+          <div style="text-align: center">
+            <p-toast
+              position="bottom-center"
+              key="c"
+              (onClose)="onReject()"
+              [baseZIndex]="5000"
+            >
+              <ng-template let-message pTemplate="message">
+                <div class="p-flex p-flex-column" style="flex: 1">
+                  <div class="p-text-center">
+                    <i
+                      class="pi pi-exclamation-triangle"
+                      style="font-size: 3rem"
+                    ></i>
+                    <h4>{{ message.summary }}</h4>
+                    <p>{{ message.detail }}</p>
+                  </div>
+                  <div class="row">
+                    <div class="col-8 offset-2">
+                      <button
+                        style="margin-right: 0.5rem; width: 40%"
+                        type="button"
+                        pButton
+                        (click)="delete(message.id)"
+                        label="Yes"
+                        class="p-button-success"
+                      ></button>
+                      <button
+                        style="margin-left: 0.5rem; width: 40%"
+                        type="button"
+                        pButton
+                        (click)="onReject()"
+                        label="No"
+                        class="p-button-secondary"
+                      ></button>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </p-toast>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

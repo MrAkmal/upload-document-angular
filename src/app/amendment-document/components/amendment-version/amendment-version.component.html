@@ -1,0 +1,13 @@
+<p-dropdown
+  [options]="document.versions"
+  [(ngModel)]="selectedVersion"
+  placeholder="Select version"
+  [showClear]="true"
+>
+</p-dropdown>
+<app-amendment-download
+  style="padding-left: 0.5rem"
+  [documentId]="document.id"
+  [selectedVersion]="selectedVersion"
+  [folder]="folder"
+></app-amendment-download>

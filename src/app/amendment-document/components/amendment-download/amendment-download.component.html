@@ -1,0 +1,42 @@
+<button
+  (click)="showModalDialog()"
+  pButton
+  pRipple
+  type="button"
+  icon="pi pi-download"
+  class="p-button-rounded p-button-success p-button-outlined"
+></button>
+<p-dialog
+  header="Document Download"
+  [(visible)]="displayModal"
+  [modal]="true"
+  [style]="{ width: '50vw', height: '40vh' }"
+  [baseZIndex]="10000"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <form [formGroup]="downloadForm" >
+    <div class="mb-3">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-file"></i></span>
+        <input
+          type="text"
+          formControlName="name"
+          pInputText
+          placeholder="File name"
+        />
+      </div>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-download"
+      label="Download"
+      (click)="download()"
+      class="p-button p-button-success p-button-sm"
+    ></button>
+  </ng-template>
+</p-dialog>
