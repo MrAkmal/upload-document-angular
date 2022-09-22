@@ -81,11 +81,12 @@ export class AmendmentDownloadComponent implements OnInit {
           downloadLink.setAttribute('download', fileName);
         document.body.appendChild(downloadLink);
         downloadLink.click();
+        this.messageService.add({ severity: 'success', summary: 'Download', detail: 'Successfully Downloaded' });
       }
     )
 
     this.displayModal = false;
-    this.messageService.add({ severity: 'success', summary: 'Download', detail: 'Successfully Downloaded' });
+
   }
 
 }

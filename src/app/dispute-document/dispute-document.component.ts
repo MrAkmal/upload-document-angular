@@ -24,10 +24,7 @@ export class DisputeDocumentComponent implements OnInit {
     this.getAll();
   }
 
-
-
   getAll() {
-    this.disputeDocuments = [];
     this.amendmentDocumentApi.getAll()
       .then(res => {
         console.log("res: ", res);
@@ -45,7 +42,6 @@ export class DisputeDocumentComponent implements OnInit {
     this.amendmentDocumentApi.delete(id)
       .then(() => {
         this.getAll();
-        this.messageService.add({ severity: 'error', summary: 'Deleted', detail: 'Successfully Deleted' });
       }).catch((err: any) => {
         console.log(err);
         this.getAll();

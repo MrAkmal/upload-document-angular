@@ -27,7 +27,6 @@ export class AmendmentDocumentComponent implements OnInit {
 
 
   getAll() {
-    this.amendmentDocuments = [];
     this.amendmentDocumentApi.getAll()
       .then(res => {
         console.log("res: ", res);

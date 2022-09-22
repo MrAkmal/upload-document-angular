@@ -20,7 +20,7 @@
         <td>{{rowIndex+1}}</td>
         <td>{{ document.documentName }}</td>
         <td>{{ document.documentSize }}</td>
-        <td>{{ document.uploadedDate }}</td>
+        <td>{{ document.uploadedDate | date: 'yyyy-mm-dd hh:mm:ss'}}</td>
         <td>
           <app-amendment-version [document]="document" [folder]="'amendment'"> </app-amendment-version>
         </td>
@@ -85,3 +85,4 @@
     </ng-template>
   </p-table>
 </div>
+

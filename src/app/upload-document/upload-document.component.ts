@@ -75,6 +75,7 @@ export class UploadDocumentComponent implements OnInit {
       this.uploadApi.save(dto)
         .then(res => {
           console.log(res);
+
           this.uploadForm = this.fb.group({
             userId: '',
             commonId: '',
@@ -83,18 +84,22 @@ export class UploadDocumentComponent implements OnInit {
           });
 
           this.multipartFile;
-          this.disputeDocument.getAll();
-          this.amendmentDocument.getAll();
 
+          if (this.isDispute) {
+            this.disputeDocument.getAll();
+          } else {
+            this.amendmentDocument.getAll();
+          }
+          this.displayModal = false;
+          this.isAmendment = false;
+          this.isDispute = false;
 
         }).catch(err => {
           console.log(err);
-
+          this.displayModal = false;
+          this.isAmendment = false;
+          this.isDispute = false;
         });
-
-      this.displayModal = false;
-      this.isAmendment = false;
-      this.isDispute = false;
 
     }
 

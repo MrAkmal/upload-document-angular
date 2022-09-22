@@ -26,6 +26,9 @@ import { AmendmentVersionComponent } from './amendment-document/components/amend
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ViewDocumentComponent } from './common/view-document/view-document.component'
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { ViewDocumentComponent } from './common/view-document/view-document.comp
     DisputeDocumentComponent,
     AmendmentDownloadComponent,
     AmendmentVersionComponent,
-    ViewDocumentComponent
+    ViewDocumentComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,8 @@ import { ViewDocumentComponent } from './common/view-document/view-document.comp
     ConfirmPopupModule,
     TableModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ProgressSpinnerModule
   ],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
