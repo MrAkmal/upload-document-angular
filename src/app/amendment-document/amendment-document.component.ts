@@ -1,6 +1,7 @@
 import { AmendmentDocumentApi } from './amendment-document-api';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 
 @Injectable(
@@ -15,7 +16,7 @@ import { MessageService } from 'primeng/api';
 })
 export class AmendmentDocumentComponent implements OnInit {
 
-  constructor(private amendmentDocumentApi: AmendmentDocumentApi,
+  constructor(private router: Router, private amendmentDocumentApi: AmendmentDocumentApi,
     private messageService: MessageService) { }
 
   amendmentDocuments: CommonDocumentDTO[] = [];
@@ -36,6 +37,12 @@ export class AmendmentDocumentComponent implements OnInit {
       })
   }
 
+  reloadCurrentRoute() {
+    let currentUrl = this.router.url;
+    this.router.navigateByUrl('/dispute-document', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  }
 
   delete(id: number) {
 

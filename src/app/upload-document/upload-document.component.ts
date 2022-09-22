@@ -86,9 +86,9 @@ export class UploadDocumentComponent implements OnInit {
           this.multipartFile;
 
           if (this.isDispute) {
-            this.disputeDocument.getAll();
+            this.disputeDocument.reloadCurrentRoute();
           } else {
-            this.amendmentDocument.getAll();
+            this.amendmentDocument.reloadCurrentRoute();
           }
           this.displayModal = false;
           this.isAmendment = false;
