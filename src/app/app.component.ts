@@ -1,18 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import {PrimeNGConfig} from 'primeng/api';
+import { MenuItem, PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
+  
   title = 'upload-document-angular';
 
-  constructor(private primengConfig: PrimeNGConfig) {}
+  items: MenuItem[] = [];
+  constructor(private primengConfig: PrimeNGConfig) { }
 
   ngOnInit() {
-      this.primengConfig.ripple = true;
+    this.primengConfig.ripple = true;
+
+    this.items = [
+      {
+        label: 'Amendment Documents',
+        icon: 'pi pi-fw pi-folder',
+        routerLink:'/'
+      },
+      {
+        label: 'Dispute Documents',
+        icon: 'pi pi-fw pi-folder',
+        routerLink:'/dispute-document'
+      }
+    ];
   }
+
+
 
 }

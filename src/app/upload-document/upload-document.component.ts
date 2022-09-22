@@ -2,6 +2,8 @@ import { UploadApi } from './upload-document-api';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { AmendmentDocumentComponent } from '../amendment-document/amendment-document.component';
+import { DisputeDocumentComponent } from '../dispute-document/dispute-document.component';
 
 @Component({
   selector: 'app-upload-document',
@@ -10,7 +12,7 @@ import { MessageService } from 'primeng/api';
 })
 export class UploadDocumentComponent implements OnInit {
 
-  userTypes: string[] = ['Amendment', 'DisputeDocuments'];
+  userTypes: string[] = ['AmendmentDocuments', 'DisputeDocuments'];
 
   uploadForm: FormGroup;
 
@@ -28,7 +30,7 @@ export class UploadDocumentComponent implements OnInit {
   onSelect(event: any) {
     console.log('event :' + event);
     console.log(event.value);
-    if (event.value === 'Amendment') {
+    if (event.value === 'AmendmentDocuments') {
       this.isDispute = false;
       this.isAmendment = true;
     } else if (event.value === 'DisputeDocuments') {
@@ -37,7 +39,8 @@ export class UploadDocumentComponent implements OnInit {
     }
   }
 
-  constructor(private fb: FormBuilder, private uploadApi: UploadApi, private messageService: MessageService) {
+  constructor(private fb: FormBuilder, private uploadApi: UploadApi, private messageService: MessageService,
+    private amendmentDocument: AmendmentDocumentComponent, private disputeDocument: DisputeDocumentComponent) {
     this.uploadForm = this.fb.group({
       userId: '',
       commonId: '',
@@ -80,6 +83,8 @@ export class UploadDocumentComponent implements OnInit {
           });
 
           this.multipartFile;
+          this.disputeDocument.getAll();
+          this.amendmentDocument.getAll();
 
 
         }).catch(err => {

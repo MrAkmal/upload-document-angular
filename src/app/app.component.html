@@ -1,8 +1,8 @@
 <p-toast></p-toast>
-<div class="container">
-  <div class="row">
-    <div class="col-md-2 offset-5">
-      <app-upload-document></app-upload-document>
-    </div>
-  </div>
-</div>
+<p-menubar [model]="items">
+  <ng-template pTemplate="start"> </ng-template>
+  <ng-template pTemplate="end">
+    <app-upload-document></app-upload-document>
+  </ng-template>
+</p-menubar>
+<router-outlet></router-outlet>

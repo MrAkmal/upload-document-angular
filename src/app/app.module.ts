@@ -6,18 +6,37 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UploadDocumentComponent } from './upload-document/upload-document.component';
-import {InputTextModule} from 'primeng/inputtext';
-import {DropdownModule} from 'primeng/dropdown';
-import {DialogModule} from 'primeng/dialog';
-import {AccordionModule} from 'primeng/accordion'; 
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
+import { AccordionModule } from 'primeng/accordion';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { MenubarModule } from 'primeng/menubar';
+import { AmendmentDocumentComponent } from './amendment-document/amendment-document.component';
+import { DisputeDocumentComponent } from './dispute-document/dispute-document.component';
+
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RippleModule } from 'primeng/ripple';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { TableModule } from 'primeng/table';
+import { AmendmentDownloadComponent } from './amendment-document/components/amendment-download/amendment-download.component';
+import { AmendmentVersionComponent } from './amendment-document/components/amendment-version/amendment-version.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { ViewDocumentComponent } from './common/view-document/view-document.component'
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
-      UploadDocumentComponent
-   ],
+    UploadDocumentComponent,
+    AmendmentDocumentComponent,
+    DisputeDocumentComponent,
+    AmendmentDownloadComponent,
+    AmendmentVersionComponent,
+    ViewDocumentComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -27,9 +46,17 @@ import { MessageService } from 'primeng/api';
     DialogModule,
     AccordionModule,
     ReactiveFormsModule,
-    ToastModule
+    ToastModule,
+    MenubarModule,
+    ConfirmDialogModule,
+    RippleModule,
+    DynamicDialogModule,
+    ConfirmPopupModule,
+    TableModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
