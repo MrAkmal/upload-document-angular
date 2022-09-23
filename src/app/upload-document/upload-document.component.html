@@ -22,16 +22,7 @@
       </span>
     </div>
     <br>
-    <div class="mb-3">
-      <div class="p-inputgroup">
-        <span class="p-float-label">
-          <input id="float-input" formControlName="fileDescription" type="text" pInputText />
-          <label for="float-input">Description</label>
-        </span>
-      </div>
-    </div>
-
-    <br>
+  
     <div class="mb-3">
       <div class="p-inputgroup">
         <span class="p-float-label">
@@ -46,6 +37,24 @@
       <div class="p-inputgroup">
         <input type="file" (change)="onChange($event)" />
       </div>
+    </div>
+    <br>
+    <div class="mb-3">
+      <div class="p-inputgroup">
+        <span class="p-float-label">
+          <input id="float-input" formControlName="fileDescription" type="text" pInputText />
+          <label for="float-input">Description</label>
+        </span>
+      </div>
+    </div>
+    <br>
+    <div class="mb-3">
+      <span class="p-float-label">
+        <p-dropdown  inputId="dropdown" formControlName="algorithm" [autoDisplayFirst]="false" [options]="encryptionAlgorithms"
+          [style]="{ width: '100%' }">
+        </p-dropdown>
+        <label for="dropdown">EncryptionAlgorithms</label>
+      </span>
     </div>
   </form>
   <ng-template pTemplate="footer">

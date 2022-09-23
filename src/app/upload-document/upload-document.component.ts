@@ -13,6 +13,7 @@ import { DisputeDocumentComponent } from '../dispute-document/dispute-document.c
 export class UploadDocumentComponent implements OnInit {
 
   userTypes: string[] = ['AmendmentDocuments', 'DisputeDocuments'];
+  encryptionAlgorithms:string[]=['AES','RSA','NAN','TripleDES'];
 
   uploadForm: FormGroup;
 
@@ -41,12 +42,13 @@ export class UploadDocumentComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private uploadApi: UploadApi, private messageService: MessageService,
     private amendmentDocument: AmendmentDocumentComponent, private disputeDocument: DisputeDocumentComponent) {
-    this.uploadForm = this.fb.group({
-      userId: '',
-      commonId: '',
-      fileDescription: '',
-      userType: ''
-    });
+      this.uploadForm = this.fb.group({
+        userId: '',
+        commonId: '',
+        fileDescription: '',
+        userType: '',
+        algorithm:''
+      });
   }
 
   ngOnInit(): void {
@@ -69,7 +71,8 @@ export class UploadDocumentComponent implements OnInit {
         fileDescription: val.fileDescription,
         userId: val.userId,
         commonId: val.commonId,
-        userType: val.userType
+        userType: val.userType,
+        algorithm:val.algorithm
       };
 
       this.uploadApi.save(dto)
@@ -80,7 +83,8 @@ export class UploadDocumentComponent implements OnInit {
             userId: '',
             commonId: '',
             fileDescription: '',
-            userType: ''
+            userType: '',
+            algorithm:''
           });
 
           this.multipartFile;
@@ -116,6 +120,8 @@ export interface FileUploadDTO {
   commonId: number;
 
   userType: string;
+
+  algorithm:string;
 
 
 
