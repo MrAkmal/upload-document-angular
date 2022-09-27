@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import axios from "axios";
 import { MessageService } from "primeng/api";
+import { FileUploadUpdateDTO } from "../common/update-document/update-document.component";
 import { FileUploadDTO } from "./upload-document.component";
 
 
@@ -9,7 +10,7 @@ import { FileUploadDTO } from "./upload-document.component";
 )
 export class UploadApi {
 
-    baseUrl: string = "http://localhost:9090/v1/file/upload"
+    baseUrl: string = "http://localhost:9090/v1/file"
 
     constructor(    private messageService: MessageService) {
 
@@ -18,7 +19,7 @@ export class UploadApi {
     async save(dto: FileUploadDTO) {
 
 
-        await axios.post(this.baseUrl,
+        await axios.post(this.baseUrl+'/upload',
             dto,
             {
                 headers: { 'Content-Type': 'multipart/form-data' }
@@ -34,6 +35,29 @@ export class UploadApi {
             }
             );
     }
+
+    
+    async update(dto: FileUploadUpdateDTO) {
+
+
+        await axios.put(this.baseUrl+'/update',
+            dto,
+            {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            })
+            .then((res: { data: any; }) => {
+                console.log("success",res);
+                this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Successfully Updated' });
+                return res.data;
+            }).catch((err: any) => {
+                console.log("err: ",err);
+                console.log("err response: ",err.response);
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: err.response.data.message });
+            }
+            );
+    }
+
+    
 
 
 

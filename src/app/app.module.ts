@@ -28,6 +28,7 @@ import { FormsModule } from '@angular/forms';
 import { ViewDocumentComponent } from './common/view-document/view-document.component'
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UpdateDocumentComponent } from './common/update-document/update-document.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AmendmentDownloadComponent,
     AmendmentVersionComponent,
     ViewDocumentComponent,
-    NavbarComponent
+    NavbarComponent,
+    UpdateDocumentComponent
   ],
   imports: [
     BrowserModule,

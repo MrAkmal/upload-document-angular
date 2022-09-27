@@ -1,0 +1,35 @@
+<button (click)="showModalDialog()" pButton pRipple type="button" icon="pi pi-pencil"
+  class="p-button-rounded p-button-primary p-button-sm"></button>
+<p-dialog header="Document Update" [(visible)]="displayModal" [modal]="true" [style]="{ width: '50vw',height: '100vh' }"
+  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  <form [formGroup]="uploadForm">
+    <br />  
+    <div class="mb-3">
+      <div class="p-inputgroup">
+        <input type="file" (change)="onChange($event)" />
+      </div>
+    </div>
+    <br>
+    <div class="mb-3">
+      <div class="p-inputgroup">
+        <span class="p-float-label">
+          <input id="float-input" [(ngModel)]="document.documentDescription" formControlName="fileDescription" type="text" pInputText />
+          <label for="float-input" >Description</label>
+        </span>
+      </div>
+    </div>
+    <br>
+    <div class="mb-3">
+      <span class="p-float-label">
+        <p-dropdown  inputId="dropdown" formControlName="algorithm" [autoDisplayFirst]="false" [options]="encryptionAlgorithms"
+          [style]="{ width: '100%' }">
+        </p-dropdown>
+        <label for="dropdown">EncryptionAlgorithms</label>
+      </span>
+    </div>
+  </form>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple type="button" label="Save" icon="pi pi-save" (click)="update()"
+      class="p-button p-button-primary p-button-sm"></button>
+  </ng-template>
+</p-dialog>
