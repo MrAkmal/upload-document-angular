@@ -20,7 +20,7 @@
         <td>{{ rowIndex + 1 }}</td>
         <td>{{ document.documentName }}</td>
         <td>{{ document.documentSize }}</td>
-        <td>{{ document.uploadedDate  }}</td>
+        <td>{{ document.uploadedDate | date: 'medium' }}</td>
         <td>
           <app-amendment-version [document]="document" [folder]="'dispute'">
           </app-amendment-version>

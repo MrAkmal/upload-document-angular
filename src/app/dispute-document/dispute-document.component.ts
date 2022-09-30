@@ -36,7 +36,30 @@ export class DisputeDocumentComponent implements OnInit {
     this.amendmentDocumentApi.getAll()
       .then(res => {
         console.log("res: ", res);
-        this.disputeDocuments = res;
+        // this.disputeDocuments = res;
+
+        for (let element of res) {
+          this.disputeDocuments.push({
+            id: element.id,
+            documentName: element.documentName,
+            documentDescription: element.documentDescription,
+            documentSize: element.documentSize,
+            uploadedDate: new Date(element.uploadedDate[0],
+              element.uploadedDate[1],
+              element.uploadedDate[2],
+              element.uploadedDate[3],
+              element.uploadedDate[4],
+              element.uploadedDate[5],
+              element.uploadedDate[6]
+              ),
+            uploadedBy: element.uploadedBy,
+            commonId: element.commonId,
+            versions: element.versions
+          });
+        }
+
+
+        console.log("disputeDocuments: ", this.disputeDocuments);
       }).catch(err => {
         console.log(err);
       })

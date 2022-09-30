@@ -31,7 +31,28 @@ export class AmendmentDocumentComponent implements OnInit {
     this.amendmentDocumentApi.getAll()
       .then(res => {
         console.log("res: ", res);
-        this.amendmentDocuments = res;
+        // this.amendmentDocuments = res;
+
+        for (let element of res) {
+          this.amendmentDocuments.push({
+            id: element.id,
+            documentName: element.documentName,
+            documentDescription: element.documentDescription,
+            documentSize: element.documentSize,
+            uploadedDate: new Date(element.uploadedDate[0],
+              element.uploadedDate[1],
+              element.uploadedDate[2],
+              element.uploadedDate[3],
+              element.uploadedDate[4],
+              element.uploadedDate[5],
+              element.uploadedDate[6]
+            ),
+            uploadedBy: element.uploadedBy,
+            commonId: element.commonId,
+            versions: element.versions
+          });
+        }
+
       }).catch(err => {
         console.log(err);
       })

@@ -121,6 +121,8 @@ export class RestoreDocumentComponent implements OnInit {
         userType: ''
       }
 
+      console.log("DTO : ",dto)
+
       this.restoreApi.restoreBetweenDate(dto)
         .then(res => {
           console.log(res);

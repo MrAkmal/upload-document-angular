@@ -30,7 +30,7 @@
             DocumentDescription : {{ document.documentDescription }}
           </li>
           <li class="list-group-item">
-            UploadedDate : {{ document.uploadedDate  }}
+            UploadedDate : {{ document.uploadedDate |  date: 'medium'  }}
           </li>
           <li class="list-group-item">
             UploadedBy : {{ document.uploadedBy }}
