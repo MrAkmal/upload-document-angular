@@ -22,6 +22,11 @@ export class NavbarComponent implements OnInit {
         label: 'Dispute Documents',
         icon: 'pi pi-fw pi-folder',
         routerLink:'/dispute-document'
+      },
+      {
+        label: 'Restore Documents',
+        icon: 'pi pi-fw pi-refresh',
+        routerLink:'/restore-document'
       }
     ];
   }

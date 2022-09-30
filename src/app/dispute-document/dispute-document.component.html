@@ -20,7 +20,7 @@
         <td>{{ rowIndex + 1 }}</td>
         <td>{{ document.documentName }}</td>
         <td>{{ document.documentSize }}</td>
-        <td>{{ document.uploadedDate | date: "yyyy-mm-dd hh:mm:ss" }}</td>
+        <td>{{ document.uploadedDate  }}</td>
         <td>
           <app-amendment-version [document]="document" [folder]="'dispute'">
           </app-amendment-version>
@@ -32,7 +32,7 @@
           ></app-view-document>
         </td>
         <td>
-          <app-update-document [document]="document" [userType]="'DisputeDocuments'"></app-update-document>
+          <app-update-document [document]="document" [documentType]="'DisputeDocuments'"></app-update-document>
           <button
             pButton
             pRipple

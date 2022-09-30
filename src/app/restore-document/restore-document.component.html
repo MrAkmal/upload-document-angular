@@ -1,0 +1,96 @@
+<div class="container" style="padding-top: 2rem;">
+  <div class="row">
+    <div class="col-md-4" style="padding-top: 2rem;">
+      <div class="grid p-fluid">
+
+        <div class="col-12 md:col-4">
+          <div class="p-inputgroup">
+            <div class="p-fluid p-grid p-formgrid">
+              <p-calendar placeholder="Begin" [(ngModel)]="begin"  [readonlyInput]="true"
+                 [showTime]="true">
+              </p-calendar>
+            </div>
+          </div>
+          <br>
+          <div class="p-inputgroup">
+            <div class="p-fluid p-grid p-formgrid">
+              <p-calendar [(ngModel)]="end" [readonlyInput]="true" 
+                [showTime]="true" placeholder="End">
+              </p-calendar>
+            </div>
+          </div>
+          <br>
+          <div class="p-inputgroup">
+            <div class="p-fluid p-grid p-formgrid">
+              <button pButton pRipple type="button" icon="pi pi-refresh"
+                class="p-button p-button-success p-button-outlined" label="Restore"
+                (click)="restoreBetweenDate()"></button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-4" style="padding-top: 2rem;">
+      <div class="grid p-fluid">
+
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <input type="text" [(ngModel)]="documentId" pInputText placeholder="Document Id">
+          </div>
+
+          <br>
+          <div class="p-inputgroup">
+            <div class="p-fluid p-grid p-formgrid">
+              <button pButton pRipple type="button" icon="pi pi-refresh"
+                class="p-button p-button-success p-button-outlined" label="Restore"
+                (click)="restoreWithDocumentId()"></button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-md-4" style="padding-top: 2rem;">
+      <div class="grid p-fluid">
+
+        <div class="col-12">
+          <div class="p-inputgroup">
+            <input type="text" [(ngModel)]="documentType" pInputText placeholder="Document Type">
+          </div>
+          <br>
+          <div class="p-inputgroup">
+            <input type="text" [(ngModel)]="documentName" pInputText placeholder="Document Name">
+          </div>
+          <br>
+
+          <div class="p-inputgroup">
+            <input type="text" [(ngModel)]="userId" pInputText placeholder="User Id">
+          </div>
+          <br>
+          <div class="p-inputgroup">
+            <input type="text" [(ngModel)]="commonId" pInputText placeholder="Common Id">
+          </div>
+          <br>
+          <br>
+          <div class="p-inputgroup">
+            <div class="p-fluid p-grid p-formgrid">
+              <button pButton pRipple type="button" icon="pi pi-refresh"
+                class="p-button p-button-success p-button-outlined" label="Restore"
+                (click)="restoreWithName()"></button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

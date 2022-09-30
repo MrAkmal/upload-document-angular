@@ -29,10 +29,11 @@ import { ViewDocumentComponent } from './common/view-document/view-document.comp
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UpdateDocumentComponent } from './common/update-document/update-document.component';
-
+import { RestoreDocumentComponent } from './restore-document/restore-document.component';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     UploadDocumentComponent,
     AmendmentDocumentComponent,
@@ -41,8 +42,9 @@ import { UpdateDocumentComponent } from './common/update-document/update-documen
     AmendmentVersionComponent,
     ViewDocumentComponent,
     NavbarComponent,
-    UpdateDocumentComponent
-  ],
+    UpdateDocumentComponent,
+      RestoreDocumentComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -61,6 +63,7 @@ import { UpdateDocumentComponent } from './common/update-document/update-documen
     TableModule,
     FormsModule,
     HttpClientModule,
+    CalendarModule,
     ProgressSpinnerModule
   ],
   providers: [MessageService, ConfirmationService],

@@ -15,14 +15,15 @@
     <br>
     <div class="mb-3">
       <span class="p-float-label">
-        <p-dropdown (onChange)="onSelect($event)" inputId="dropdown" formControlName="userType" [autoDisplayFirst]="false" [options]="userTypes"
+        <p-dropdown (onChange)="onSelect($event)" inputId="dropdown" formControlName="documentTypeId"
+          [autoDisplayFirst]="false" [options]="documentTypes" optionLabel="type" optionValue="id"
           [style]="{ width: '100%' }">
         </p-dropdown>
-        <label for="dropdown">UserType</label>
+        <label for="dropdown">DocumentType</label>
       </span>
     </div>
     <br>
-  
+
     <div class="mb-3">
       <div class="p-inputgroup">
         <span class="p-float-label">
@@ -35,7 +36,7 @@
     <br />
     <div class="mb-3">
       <div class="p-inputgroup">
-        <input type="file" (change)="onChange($event)" />
+        <input type="file" (change)="onChange($event)" [disabled]="isDisabled" />
       </div>
     </div>
     <br>
@@ -50,8 +51,8 @@
     <br>
     <div class="mb-3">
       <span class="p-float-label">
-        <p-dropdown  inputId="dropdown" formControlName="algorithm" [autoDisplayFirst]="false" [options]="encryptionAlgorithms"
-          [style]="{ width: '100%' }">
+        <p-dropdown inputId="dropdown" formControlName="algorithm" [autoDisplayFirst]="false"
+          [options]="encryptionAlgorithms" [style]="{ width: '100%' }">
         </p-dropdown>
         <label for="dropdown">EncryptionAlgorithms</label>
       </span>

@@ -6,7 +6,7 @@
     <br />  
     <div class="mb-3">
       <div class="p-inputgroup">
-        <input type="file" (change)="onChange($event)" />
+        <input type="file" (change)="onChange($event)" [disabled]="isDisabled"/>
       </div>
     </div>
     <br>

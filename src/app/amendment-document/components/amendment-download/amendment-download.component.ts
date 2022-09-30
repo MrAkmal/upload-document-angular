@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { UploadApi } from 'src/app/upload-document/upload-document-api';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -14,49 +13,28 @@ export class AmendmentDownloadComponent implements OnInit {
   documentId!: number;
   @Input()
   selectedVersion!: string;
-  downloadForm: FormGroup;
 
   @Input()
   folder!: string;
 
 
-  constructor(private fb: FormBuilder,
-    private http: HttpClient,
+  constructor(
+    private uploadApi: UploadApi,
     private messageService: MessageService) {
-
-    this.downloadForm = this.fb.group({
-      name: ''
-    });
 
   }
 
   ngOnInit(): void {
   }
 
-  displayModal!: boolean;
-  showModalDialog() {
-    this.displayModal = true;
-    this.downloadForm = this.fb.group({
-      name: ''
-    });
-  }
 
 
   download() {
     console.log("version: " + this.selectedVersion);
-    const val = this.downloadForm.value;
-    if (this.selectedVersion && this.documentId && val.name) {
-      this.downloadFile(this.documentId, val.name);
+    if (this.selectedVersion && this.documentId) {
+      this.downloadFile(this.documentId);
     }
-    else if (!this.selectedVersion && !val.name) {
-      this.displayModal = false;
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Select version and type file name' });
-    }
-    else if (!val.name) {
-      this.displayModal = false;
-      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Type File Name' });
-    } else {
-      this.displayModal = false;
+    else if (!this.selectedVersion) {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Select Version' });
     }
 
@@ -64,28 +42,24 @@ export class AmendmentDownloadComponent implements OnInit {
 
 
 
-  downloadFile(id: number, fileName: string) {
-
-    const baseUrl = 'http://localhost:9090/v1/' + this.folder + '/' + id + '/' + this.selectedVersion;
+  downloadFile(id: number) {
 
 
-    this.http.get(baseUrl, { responseType: 'blob' }).subscribe(
-      (response) => {
+    this.uploadApi.downloadFile(id, this.folder, this.selectedVersion)
+      .subscribe(response => {
+        const keys = response.headers.keys();
+        console.log("headers: ", keys);
+        const fileName: string = response.headers.get('file-name') as string;
 
-        let dataType = response.type;
-        let binaryData = [];
-        binaryData.push(response);
-        let downloadLink = document.createElement('a');
-        downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, { type: dataType }));
-        if (fileName)
-          downloadLink.setAttribute('download', fileName);
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
+        let blob: Blob = response.body as Blob;
+        let a = document.createElement('a');
+        a.setAttribute('download', fileName);
+        a.href = window.URL.createObjectURL(blob);
+        a.click();
         this.messageService.add({ severity: 'success', summary: 'Download', detail: 'Successfully Downloaded' });
-      }
-    )
 
-    this.displayModal = false;
+      })
+
 
   }
 

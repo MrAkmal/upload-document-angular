@@ -1,3 +1,4 @@
+import { RestoreDocumentComponent } from './restore-document/restore-document.component';
 import { DisputeDocumentComponent } from './dispute-document/dispute-document.component';
 import { AmendmentDocumentComponent } from './amendment-document/amendment-document.component';
 import { NgModule } from '@angular/core';
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path:"dispute-document",
     component:DisputeDocumentComponent
+  },
+  {
+    path:"restore-document",
+    component:RestoreDocumentComponent
   }
 ];
 
