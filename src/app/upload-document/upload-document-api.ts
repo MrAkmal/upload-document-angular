@@ -15,8 +15,8 @@ export class UploadApi {
     documentTypeUrl: string = "http://localhost:9090/v1/document_type";
 
     constructor(private messageService: MessageService, private http: HttpClient) {
-
     }
+
 
     async getAllDocumentTypes() {
 
